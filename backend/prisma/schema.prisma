@@ -1,0 +1,37 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int      @id @default(autoincrement())
+  username String   @unique
+  password String
+}
+
+model Product {
+  id          Int           @id @default(autoincrement())
+  name        String
+  productCode String        @unique
+  basePrice   Int
+  markup      Int           @default(0)
+  totalPrice  Int           @default(0)
+  isActive    Boolean       @default(true)
+  transactions Transaction[]
+}
+
+model Transaction {
+  id         String   @id @default(uuid())
+  userIdPubg String
+  zoneIdPubg String
+  product    Product  @relation(fields: [productId], references: [id])
+  productId  Int
+  status     String   @default("PENDING") // PENDING, PAID, SUCCESS, FAILED
+  price      Int
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
