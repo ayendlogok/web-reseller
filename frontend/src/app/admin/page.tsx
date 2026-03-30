@@ -5,7 +5,7 @@ import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import { Loader2, LayoutDashboard, Settings, LogOut, Package as PackageIcon, RefreshCcw } from 'lucide-react';
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
 
 export default function AdminDashboard() {
   const [token, setToken] = useState('');

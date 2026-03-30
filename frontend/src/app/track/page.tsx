@@ -6,7 +6,7 @@ import { useSearchParams } from 'next/navigation';
 import { Loader2, Search, CheckCircle, Clock, XCircle, Package } from 'lucide-react';
 import { toast } from 'react-hot-toast';
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
 
 function TrackOrderContent() {
   const searchParams = useSearchParams();

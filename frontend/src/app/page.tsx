@@ -5,7 +5,7 @@ import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import { Check, Loader2, Gamepad2, ShoppingCart, QrCode, CreditCard, MessageCircle, Info } from 'lucide-react';
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
 
 const PAYMENT_METHODS = [
   { id: 'dana', name: 'DANA', type: 'E-Wallet', img: 'https://upload.wikimedia.org/wikipedia/commons/7/72/Logo_dana_blue.svg' },
