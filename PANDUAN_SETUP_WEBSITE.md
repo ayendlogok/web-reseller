@@ -22,7 +22,7 @@ Website ini sudah dioptimalkan untuk di-host secara gratis/murah menggunakan kom
 
 ### 1. Database (Railway.app)
 1. Buat akun di **Railway.app** dan pilih **Provision MySQL**.
-2. Ambil **Public URL** (biasanya berawalan `mysql://root:...`).
+2. Ambil **Public Proxy URL** (biasanya berawalan `mysql://root:...`).
 3. Database ini akan menyimpan produk, admin, dan transaksi Anda.
 
 ### 2. Backend Server (Vercel)
@@ -34,7 +34,16 @@ Website ini sudah dioptimalkan untuk di-host secara gratis/murah menggunakan kom
 ### 3. Frontend (Vercel)
 1. Hubungkan repositori yang sama ke project Vercel kedua.
 2. Pilih **Root Directory**: `frontend`.
-3. Tambahkan **Environment Variable**: `NEXT_PUBLIC_API_URL` dengan link Backend Vercel Anda (Sangat penting: tambahkan `/api` di akhir link, contoh: `https://backend-anda.vercel.app/api`).
+3. Tambahkan **Environment Variable**: `NEXT_PUBLIC_API_URL` dengan link Backend Vercel Anda (Sangat penting: tambahkan `/api` di akhir link).
+
+---
+
+## 📞 Kustomisasi Kontak (WhatsApp)
+Jangan lupa untuk mengubah nomor WhatsApp Customer Service agar pembeli bisa menghubungi Anda:
+1. Buka file `frontend/src/app/page.tsx`.
+2. Cari teks `https://wa.me/628123456789` (atau cari ikon WhatsApp).
+3. Ganti nomor tersebut dengan nomor WhatsApp Anda (Gunakan format kode negara, contoh: `62812...`).
+4. **Simpan** dan **Redeploy** Frontend di Vercel.
 
 ---
 

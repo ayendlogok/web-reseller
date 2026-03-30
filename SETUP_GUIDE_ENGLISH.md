@@ -12,7 +12,7 @@ This website is built with the latest technology for speed, security, and scalab
 
 Currently, this website uses a **Mockup Payment System (Simulation) / Manual Confirmation**. 
 
-As the owner/manager, you **MUST connect this website to an official Payment Gateway (such as Stripe, PayPal, Midtrans, Tripay, Moota, etc.)** to enable automatic payment processing (QRIS/E-Wallet/Credit Cards) and receive funds directly into your business account. 
+As the owner/manager, you **MUST connect this website to an official Payment Gateway (such as Stripe, PayPal, Midtrans, Tripay, Moota, etc.)** to enable automatic payment processing.
 
 ---
 
@@ -22,19 +22,28 @@ This website is optimized for free/affordable hosting using **Vercel** and **Rai
 
 ### 1. Database (Railway.app)
 1. Create a **Railway.app** account and select **Provision MySQL**.
-2. Copy the **Public URL** (starting with `mysql://root:...`). 
+2. Copy the **Public Proxy URL** (starting with `mysql://root:...`). 
 3. This database will securely store your products, admin accounts, and transactions.
 
 ### 2. Backend Server (Vercel)
 1. Connect your GitHub repository as a new Project in Vercel. 
 2. Set **Root Directory** to: `backend`. 
 3. Add **Environment Variable**: `DATABASE_URL` with your Railway link.
-4. **Auto-Seed Feature**: Upon first deployment, the server will automatically create all tables and populate it with initial UC products and an admin account (`admin` / `password123`).
+4. **Auto-Seed Feature**: Upon first deployment, the server will automatically create all tables and populate initial products.
 
 ### 3. Frontend (Vercel)
 1. Connect the same repository as a second Project in Vercel. 
 2. Set **Root Directory** to: `frontend`. 
-3. Add **Environment Variable**: `NEXT_PUBLIC_API_URL` with your Backend Vercel URL. (Crucial: Add `/api` at the end, e.g., `https://your-backend.vercel.app/api`).
+3. Add **Environment Variable**: `NEXT_PUBLIC_API_URL` with your Backend Vercel URL. (Crucial: Add `/api` at the end).
+
+---
+
+## 📞 Contact Customization (WhatsApp)
+Don't forget to change the Customer Service WhatsApp number so buyers can reach you:
+1. Open the file `frontend/src/app/page.tsx`.
+2. Search for the link `https://wa.me/628123456789` (or look for the WhatsApp icon).
+3. Replace that number with your own WhatsApp number (Use country code format, e.g., `62812...`).
+4. **Save** and **Redeploy** the Frontend on Vercel.
 
 ---
 
@@ -53,4 +62,4 @@ If you want to use this website as a public demo (without letting strangers modi
 
 ---
 
-**Build Your Gaming Business!** This website uses modern Silicon-Valley tech (Node.js/Next.js) which is vastly superior in prestige and speed compared to old PHP-style top-up scripts. 👑🚀
+**Build Your Gaming Business!** This website uses modern Silicon-Valley tech (Node.js/Next.js). 👑🚀
