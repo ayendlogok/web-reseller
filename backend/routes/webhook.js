@@ -18,7 +18,7 @@ router.post('/payment', async (req, res) => {
       include: { product: true }
     });
 
-    const supplierUrl = `http://localhost:${process.env.PORT || 5000}/api/supplier/topup`;
+    const supplierUrl = `${req.protocol}://${req.get('host')}/api/supplier/topup`;
     
     axios.post(supplierUrl, {
       user_id: transaction.userIdPubg,

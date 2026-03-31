@@ -3,7 +3,7 @@
 import { useState, useEffect, Suspense } from 'react';
 import axios from 'axios';
 import { useSearchParams } from 'next/navigation';
-import { Loader2, Search, CheckCircle, Clock, XCircle, Package } from 'lucide-react';
+import { Loader2, Search, CheckCircle, Clock, XCircle, Package, RefreshCcw } from 'lucide-react';
 import { toast } from 'react-hot-toast';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
@@ -28,6 +28,7 @@ function TrackOrderContent() {
     try {
       const res = await axios.get(`${API_URL}/transactions/${idToFetch}`);
       setOrder(res.data);
+      if (order) toast.success('Status pesanan diperbarui');
     } catch (e) {
       toast.error('Pesanan tidak ditemukan');
       setOrder(null);
@@ -116,9 +117,11 @@ function TrackOrderContent() {
             <div className="text-center mt-4">
               <button 
                 onClick={() => fetchOrder(order.id)} 
-                className="text-sm text-orange-400 hover:text-orange-300 flex items-center justify-center gap-2 w-full mt-4"
+                disabled={loading}
+                className="text-sm text-orange-400 hover:text-orange-300 flex items-center justify-center gap-2 w-full mt-4 disabled:opacity-50"
               >
-                <Loader2 className="w-4 h-4 animate-spin" /> Klik untuk refresh status
+                {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <RefreshCcw className="w-4 h-4" />}
+                Klik untuk refresh status
               </button>
             </div>
           )}
