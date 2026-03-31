@@ -41,11 +41,22 @@ router.post('/create', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
   try {
-    const transaction = await prisma.transaction.findUnique({
+    let transaction = await prisma.transaction.findUnique({
       where: { id: req.params.id },
       include: { product: true }
     });
+
     if (!transaction) return res.status(404).json({ error: 'Transaction not found' });
+
+    // Jika status PAID (sudah dibayar), kita pastikan jadi SUCCESS saat dicek/refresh
+    if (transaction.status === 'PAID') {
+      transaction = await prisma.transaction.update({
+        where: { id: transaction.id },
+        data: { status: 'SUCCESS' },
+        include: { product: true }
+      });
+    }
+
     res.json(transaction);
   } catch (error) {
     res.status(500).json({ error: 'Failed to fetch transaction' });
